@@ -20,11 +20,11 @@ data "b2_application_key" "macbook_air" {
   key_name = b2_application_key.macbook_air.key_name
 }
 
-output "application_key" {
+output "application_key_info" {
   value = data.b2_application_key.macbook_air
 }
 
-output "application_key_id" {
+output "application_key" {
   value     = b2_application_key.macbook_air.application_key
   sensitive = true
 }
