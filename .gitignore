@@ -2,4 +2,3 @@
 /.terraform*
 /.terraform/
 /provider.tf
-/terraform.tfstate*
