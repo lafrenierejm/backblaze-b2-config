@@ -16,3 +16,10 @@ provider "b2" {
 }
 EOF
 }
+
+inputs = {
+  host = {
+    hostname = "macbook-air"
+    domain   = "lafreniere.xyz"
+  }
+}
