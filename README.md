@@ -10,7 +10,7 @@ It is provided under the [ISC license](https://choosealicense.com/licenses/isc/)
    - These environment variables are
       - `B2_APPLICATION_KEY_ID`
       - `B2_APPLICATION_KEY`
-   - If you use `direnv` and Nix Flakes, see the ["Direnv" section](#Direnv) below.
+   - If you use `direnv` and Nix Flakes, see the ["Direnv" section](#direnv) below.
 1. Create the `provider.tf` and initialize Terraform: `terragrunt init`
 1. Create a plan: `terragrunt plan --out=plan.out`
 1. Inspect the plan.
