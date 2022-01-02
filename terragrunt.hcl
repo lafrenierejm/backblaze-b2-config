@@ -18,8 +18,8 @@ EOF
 }
 
 inputs = {
-  host = {
-    hostname = "macbook-air"
-    domain   = "lafreniere.xyz"
-  }
+  buckets = [
+    "imac-bralley-xyz",
+    "macbook-air-lafreniere-xyz",
+  ]
 }
