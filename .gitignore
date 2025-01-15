@@ -1,4 +1,5 @@
 *.out
+/.pre-commit-config.yaml
 /.terraform*
 /.terraform/
 /provider.tf
