@@ -5,17 +5,17 @@ It is provided under the [ISC license](https://choosealicense.com/licenses/isc/)
 
 ## Use
 
-1. Update `inputs` in [`terragrunt.hcl`](./terragrunt.hcl) with names of your B2 buckets.
+1. Update [`terraform.tfvars`](./terraform.tfvars) with names of your B2 buckets.
 1. Setup Backblaze environment variables with your secrets.
    - These environment variables are
       - `B2_APPLICATION_KEY_ID`
       - `B2_APPLICATION_KEY`
    - If you use `direnv` and Nix Flakes, see the ["Direnv" section](#direnv) below.
-1. Create the `provider.tf` and initialize Terraform: `terragrunt init`
-1. Create a plan: `terragrunt plan --out=plan.out`
+1. Initialize OpenTofu: `tofu init`
+1. Create a plan: `tofu plan --out=plan.out`
 1. Inspect the plan.
-1. Run the plan: `terragrunt apply plan.out`
-1. Print the created application key(s): `terragrunt output application_key`
+1. Run the plan: `tofu apply plan.out`
+1. Print the created application key(s): `tofu output application_key`
 
 Copy the value of `application_key_id` and the printed application key for later use.
 

@@ -79,7 +79,13 @@
               config.pre-commit.devShell
               config.treefmt.build.devShell
             ];
-            packages = config.pre-commit.settings.enabledPackages ++ (with pkgs; [ pass ]);
+            packages =
+              config.pre-commit.settings.enabledPackages
+              ++ (with pkgs; [
+                opentofu
+                pass
+                backblaze-b2
+              ]);
           };
         };
     };
