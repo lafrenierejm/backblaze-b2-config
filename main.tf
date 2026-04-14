@@ -9,7 +9,7 @@ resource "b2_application_key" "key" {
   for_each = b2_bucket.bucket
 
   key_name     = each.value.bucket_name
-  bucket_id    = each.value.id
+  bucket_ids   = [each.value.id]
   capabilities = var.key_capabilities
 }
 
