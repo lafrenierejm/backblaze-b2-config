@@ -3,6 +3,11 @@ resource "b2_bucket" "bucket" {
 
   bucket_name = each.value
   bucket_type = "allPrivate"
+
+  default_server_side_encryption {
+    mode      = "SSE-B2"
+    algorithm = "AES256"
+  }
 }
 
 resource "b2_application_key" "key" {
