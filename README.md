@@ -8,8 +8,8 @@ It is provided under the [ISC license](https://choosealicense.com/licenses/isc/)
 1. Update [`terraform.tfvars`](./terraform.tfvars) with names of your B2 buckets.
 1. Setup Backblaze environment variables with your secrets.
    - These environment variables are
-      - `B2_APPLICATION_KEY_ID`
-      - `B2_APPLICATION_KEY`
+     - `B2_APPLICATION_KEY_ID`
+     - `B2_APPLICATION_KEY`
    - If you use `direnv` and Nix Flakes, see the ["Direnv" section](#direnv) below.
 1. Initialize OpenTofu: `tofu init`
 1. Create a plan: `tofu plan --out=plan.out`
@@ -23,10 +23,11 @@ Copy the value of `application_key_id` and the printed application key for later
 
 1. Update [`.envrc.private`](./.envrc.private) to export environment variables containing your Backblaze account's master secrets.
    The names of the variables to use are
-      - `B2_APPLICATION_KEY_ID`
-      - `B2_APPLICATION_KEY`
+   - `B2_APPLICATION_KEY_ID`
+   - `B2_APPLICATION_KEY`
 1. Ensure `use_flake` is defined in your `direnv` config.
    If it's not already, you can add it using the following script:
+
    ```sh
    lib="${XDG_CONFIG_HOME:-$HOME/.config}/direnv/lib"
    cat <<EOF >"$lib/use_flake.sh"
@@ -42,4 +43,5 @@ Copy the value of `application_key_id` and the printed application key for later
    }
    EOF
    ```
+
 1. Whitelist this repository: `direnv allow .`

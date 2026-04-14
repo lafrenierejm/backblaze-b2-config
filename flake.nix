@@ -66,6 +66,22 @@
             flakeCheck = false; # use pre-commit's check instead
             programs = {
               nixfmt.enable = true;
+              prettier = {
+                enable = true;
+                includes = [
+                  "*.tfstate"
+                  "*.tfstate.backup"
+                ];
+                settings.overrides = [
+                  {
+                    files = [
+                      "*.tfstate"
+                      "*.tfstate.backup"
+                    ];
+                    options.parser = "json";
+                  }
+                ];
+              };
               terraform = {
                 enable = true;
                 package = pkgs.opentofu;
