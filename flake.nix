@@ -1,7 +1,7 @@
 {
   description = "Backblaze B2 Config";
   inputs = {
-    nixpkgs.url = "github:NixOS/nixpkgs";
+    nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-25.11-darwin";
     git-hooks = {
       url = "github:cachix/git-hooks.nix";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -30,17 +30,34 @@
         {
           pre-commit = {
             check.enable = true;
-            settings.hooks = {
-              ripsecrets = {
-                enable = true;
-                excludes = [ ".*\\.crypt" ];
+            settings.package = pkgs.prek;
+            settings.hooks =
+              let
+                tfstate = [
+                  ".*\\.tfstate"
+                  ".*\\.tfstate\\.backup"
+                ];
+              in
+              {
+                end-of-file-fixer = {
+                  enable = true;
+                  excludes = tfstate;
+                };
+                ripsecrets = {
+                  enable = true;
+                  excludes = tfstate;
+                };
+                statix.enable = true;
+                treefmt.enable = true;
+                trim-trailing-whitespace = {
+                  enable = true;
+                  excludes = tfstate;
+                };
+                typos = {
+                  enable = true;
+                  excludes = tfstate;
+                };
               };
-              treefmt.enable = true;
-              typos = {
-                enable = true;
-                excludes = [ ".*\\.crypt" ];
-              };
-            };
           };
 
           treefmt.config = {
