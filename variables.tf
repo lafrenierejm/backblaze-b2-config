@@ -15,6 +15,7 @@ variable "key_capabilities" {
   default = [
     "deleteFiles",
     "listBuckets",
+    "listAllBucketNames",
     "listFiles",
     "readFiles",
     "shareFiles",

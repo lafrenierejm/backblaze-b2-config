@@ -16,16 +16,18 @@ resource "b2_bucket" "bucket" {
   }
 }
 
-resource "b2_application_key" "key" {
+resource "b2_application_key" "v3" {
   for_each = b2_bucket.bucket
 
   key_name     = each.value.bucket_name
-  bucket_ids   = [each.value.id]
+  bucket_id    = each.value.id # https://github.com/Backblaze/terraform-provider-b2/pull/132
   capabilities = var.key_capabilities
 }
 
-data "b2_application_key" "key" {
-  for_each = b2_application_key.key
+resource "b2_application_key" "v4" {
+  for_each = b2_bucket.bucket
 
-  key_name = each.value.key_name
+  key_name     = each.value.bucket_name
+  bucket_ids   = [each.value.id] # https://github.com/Backblaze/terraform-provider-b2/pull/132
+  capabilities = var.key_capabilities
 }

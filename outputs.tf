@@ -1,31 +1,20 @@
-output "application_key_id" {
+output "bucket_key_ids" {
+  description = "IDs of per-bucket application keys."
   value = {
-    for k, v in data.b2_application_key.key :
-    k => v.id
+    for k, bucket in b2_bucket.bucket : k => {
+      v3 = b2_application_key.v3[k].application_key_id
+      v4 = b2_application_key.v4[k].application_key_id
+    }
   }
 }
 
-output "application_key" {
+output "bucket_keys" {
+  description = "Values of per-bucket application keys."
+  sensitive   = true
   value = {
-    for k, v in b2_application_key.key :
-    k => v.application_key
+    for k, bucket in b2_bucket.bucket : k => {
+      v3 = b2_application_key.v3[k].application_key
+      v4 = b2_application_key.v4[k].application_key
+    }
   }
-  sensitive = true
-}
-
-output "s3_access_key_id" {
-  description = "S3-compatible access key ID (B2 application key ID) per bucket."
-  value = {
-    for k, v in b2_application_key.key :
-    k => v.application_key_id
-  }
-}
-
-output "s3_secret_access_key" {
-  description = "S3-compatible secret access key (B2 application key) per bucket."
-  value = {
-    for k, v in b2_application_key.key :
-    k => v.application_key
-  }
-  sensitive = true
 }
